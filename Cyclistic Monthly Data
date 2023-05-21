@@ -1,1 +1,4 @@
-
+Select rideable_type, Count(rideable_type) As Total_Type
+FROM dbo.Tripdata_202212
+Group by rideable_type
+Order by 1
