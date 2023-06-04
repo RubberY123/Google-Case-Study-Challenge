@@ -103,6 +103,14 @@ Group By member_casual, rideable_type
 --There are no annual member which uses docked bike. This could state that annual member are likely to purchase membership due to higher usage for shorter distance towards
 --their destination such as to their workplace. While, casual members only use the bikes for 1 time usage for longer distance towards their destination, such as for travel.
 
+--Oberserving the monthly trend of bikers
+With Da (member_casual, rideable_type, Month_Trip) AS (Select member_casual, rideable_type, (Select Month(started_at) As Month_Trip)
+from dbo.Tripdata_2022) 
+Select member_casual, rideable_type, Month_Trip, Count(rideable_type) As Total_Count
+FROM Da
+Group by member_casual, rideable_type, Month_Trip
+Order by 1,2,3 
+
 --Complicated formula to find the percentage of casual and member starting from a station. 
 DROP TABLE IF exists Station_Total_2022
 Create Table Station_Total_2022(
