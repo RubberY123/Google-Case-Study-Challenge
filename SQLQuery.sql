@@ -168,3 +168,9 @@ Select * from dbo.Tripdata_2022
 order by Duration DESC
 
 --We have to check why there are no end station recorded, might it be bike lost during cycle? As most riders that travels long distance are casual members.
+
+--Top starting stations for bikers  
+Select start_station_name, start_lat, start_lng, count(start_station_name) As Total
+from dbo.Tripdata_2022
+Group by start_station_name, start_lat, start_lng
+order by 4 DESC
